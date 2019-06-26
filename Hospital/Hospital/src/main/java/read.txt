@@ -1,0 +1,31 @@
+CREATE DATABASE `Hospital`
+
+<!诊所职工名单（包括工号、姓名、性别、出生日期、电话、照片、职称等必要信息）， 所以内部人员不用注册,用导入  -->
+CREATE TABLE `indoorpersion`(`id` varchar(12) NOT NULL AUTO_INCREMENT COMMENT '工号',`username` varchar(32) NOT NULL COMMENT '姓名',`birthday` date DEFAULT NULL COMMENT '出生日期',`sex` char(1) DEFAULT NULL COMMENT '性别',`Telephone` varchar(11) DEFAULT NULL COMMENT '电话',`photo` varchar(100) DEFAULT NULL COMMENT '照片路径',`Title` int(2) DEFAULT NULL COMMENT '职称',PRIMARY KEY(`id`))CHARACTER SET utf8;
+  工号
+insert into indoorpersion values(1234567891,'导诊1','1992-12-12','m','','','1');
+insert into indoorpersion values(11,'护士2','1992-12-13','女','','','2');
+insert into indoorpersion values(21,'医生3','1992-12-14','男','','','3');
+insert into indoorpersion values(12,'科室管理人员','1111-11-11','男','','','4');
+insert into indoorpersion values(123,'诊所管理人员','1992-12-12','m','','','5');
+insert into indoorpersion values(1232111,'管理员','1992-12-13','女','','','6');
+insert into indoorpersion values(212334341,'管理员','1992-12-14','男','','','7');
+insert into indoorpersion values(1456652,'管理员','1111-11-11','男','','','8');
+
+7,8 应该能判断出不属于 >0  <7    登录（注册链接，注册完去挂号表）先查内部表 返回相应页面   再查患者表 去挂号表
+
+
+------------------------------------患者表 ----患者Patient------------------------------帐号 建议 电话号
+CREATE TABLE `Patient`(`id` varchar(11) NOT NULL COMMENT '患者ID',`username` varchar(32) NOT NULL COMMENT '用户名称',`sex` char(1) DEFAULT NULL COMMENT '性别',PRIMARY KEY(`id`))CHARACTER SET utf8;
+
+insert into Patient values(' ')
+
+
+
+<!--导入药品名单，-->
+------------------------------------药品表medicinal ----------------------------------
+CREATE TABLE `medicinal`(`InventoryNumber` int(10) NOT NULL AUTO_INCREMENT COMMENT '库存数量',`SupplementaryQuantity` int(10) NOT NULL AUTO_INCREMENT COMMENT '补充数量',`name` varchar(32) NOT NULL COMMENT '药品名称',`UnitPrice` varchar(256) DEFAULT NULL COMMENT '单价',)CHARACTER SET utf8;
+
+
+<!--导入科室名单-->
+

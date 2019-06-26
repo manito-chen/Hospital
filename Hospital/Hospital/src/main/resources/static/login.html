@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="text/html">
+    <title>Title</title>
+    <link rel="icon" href="data:;base64,=">
+</head>
+<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var sub=document.getElementById('sub');
+        var reset=document.getElementById('reset')
+        var phonenum=document.getElementById("phonenumid")
+        var sequence =document.getElementById("sequenceid");
+        sub.onclick=function () {
+            // var string=$("input[name='sequence']").val();
+            // console.log("----------------->"+string);
+            if(phonenum.value==null || phonenum.value===""){
+                alert("手机号不能为空")
+            }
+            else if (sequence.value == null || sequence.value === "") {
+                alert("序列号不能为空")
+            }
+            else {
+               var content =  JSON.stringify({"phonenum":phonenum.value,"sequence":sequence.value})
+                // var text = "{\"sequence\":"+sequence.value+"\,\"sdf\":\"werewr\"}";
+                $.ajax({
+                    type: "post",
+                    contentType:"application/json;charset:utf-8",
+                    url: "/login",
+                    data: content,
+                    dataType: "json",
+                    success: function (Reciveddata) {
+                        console.log("sucesss!!!!!!!!!!!!!!!");
+                        // window.location.href="chat?values="+phonenum.value //带着手机号标识当前的人
+                        // window.location.href="chat"
+                        xxx()
+                    },
+                    error: function () {
+                        console.log("wrong!!!!!!!!!!!!!!!!!")
+                    }
+                });
+            }
+        }
+        reset.onclick=function () {
+            phonenum.value=" "
+            sequence.value=" "
+        }
+
+        function xxx(){
+
+            localStorage.setItem("logname",phonenum.value);
+            window.location.href="chat"
+        }
+
+    })
+
+</script>
+<body>
+phonenum:<input type="text" id="phonenumid" name="phonenum"><br>
+sequence:<input type="text" id="sequenceid"name="sequence"/><br>
+<input type="button" value="提交" name="sub"  id="sub" >
+<input type="button" value="重置" name="reset" id="reset"><br>
+</body>
+
+</html>

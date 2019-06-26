@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>患者注册</title>
+</head>
+<body>
+<!--建议用手机号注册 , 让后端 发验证短信 前端ajax验证后端的验证码与输入的码-->
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var sub=document.getElementById('sub');
+        var reset=document.getElementById('reset')
+        var phonenum=document.getElementById("phonenumid");
+        var sequence =document.getElementById("sequenceid");
+        var fs=document.getElementById("fasong");
+        reset.onclick=function () {
+            phonenum.value=" "
+            sequence.value=" "
+        }
+        fs.onclick=function () {
+            console.log("让后端 发 验证码 给手机和 前端  还是 让后端验证？")
+
+        }
+
+        sub.onclick=function () {
+            if(phonenum.value==null || phonenum.value===""){
+                alert("手机号不能为空")
+            }
+            else if (sequence.value == null || sequence.value === "") {
+                alert("验证码不能为空")
+            }else if (sequence==){
+
+            }
+
+
+
+            // else {
+            //     console.log("给后端 发 验证码")
+            // }
+
+
+        }
+
+
+
+    })
+</script>
+phonenum :<input type="text" id="phonenumid" name="phonenum"><br> <input type="button" value="发送" name="fasong"  id="fasong" >
+sequence :<input type="text" id="sequenceid"name="sequence"/><br>
+<input type="button" value="提交" name="sub"  id="sub" >
+<input type="button" value="重置" name="reset" id="reset"><br>
+
+</body>
+</html>

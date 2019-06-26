@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var sub=document.getElementById('sub')
+        var reset=document.getElementById('reset')
+        var phonenum=document.getElementById("phonenumid")
+        var sequence =document.getElementById("sequenceid")
+        var  target;
+        reset.onclick=function () {
+            phonenum.value=" "
+            sequence.value=" "
+        }
+        sub.onclick=function () {
+            if(phonenum.value==null || phonenum.value===""){
+                alert("手机号不能为空")
+            }
+            else if (sequence.value == null || sequence.value === "") {
+                alert("序列号不能为空")
+            }
+            else if(phonenum.value==sequence.value){
+                console.log("内部员工判断 ajax success 调用  skip(target)  跳页 ")
+
+                var content =  JSON.stringify({"phonenum":phonenum.value})
+                $.ajax({
+                    type: "post",
+                    contentType:"application/json;charset:utf-8",
+                    url: "/login",
+                    data: content,
+                    dataType: "json",
+                    success: function (Reciveddata) {
+                        console.log("sucesss!!!!!!!!!!!!!!!");
+                        // window.location.href="chat?values="+phonenum.value //带着手机号标识当前的人
+                        // window.location.href="chat"
+                        skip(target)
+                    },
+                    error: function () {
+                        console.log("wrong!!!!!!!!!!!!!!!!!")
+                    }
+                });
+
+            }else{
+                console.log(" 患者判断 ajax跳页 ")
+
+            }
+        }
+
+        function skip(target){
+
+            window.location.href="target"
+        }
+
+
+
+
+
+    })
+</script>
+<body>
+<!--链接注册  给后端  对比俩库 判断 是内部人员还是患者
+ 内部人员 id  password 判断是否一致(必须一致)  患者必须判断帐号 不像 内部人员 -->
+
+帐号:<input type="text" id="phonenumid" name="phonenum"><br>
+密码:<input type="text" id="sequenceid"name="sequence"/><br>
+<input type="button" value="提交" name="sub"  id="sub" >
+<input type="button" value="重置" name="reset" id="reset"><br>
+
+</body>
+</html>
